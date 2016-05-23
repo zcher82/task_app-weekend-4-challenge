@@ -1,0 +1,47 @@
+/* * {
+  border: 1px dotted red;
+} */
+
+.task {
+  position: relative;
+  width: 49%;
+  float: left;
+  border-radius: 5px;
+  background-color: beige;
+  margin: 2px 2px 2px 2px;
+}
+
+.finallyComplete {
+  position: relative;
+  width: 49%;
+  float: left;
+  border-radius: 5px;
+  background-color: green;
+  margin: 2px 2px 2px 2px;
+}
+
+.completed {
+  background-color: peachpuff;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  border-radius: 5px;
+}
+
+.delete {
+  background-color: peachpuff;
+  position: absolute;
+  top: 60px;
+  right: 15px;
+  border-radius: 5px;
+}
+
+.updateNotes {
+  background-color: peachpuff;
+  border-radius: 5px;
+}
+
+h3, h4, h5 {
+  margin: 5px 5px 5px 5px;
+  width: 75%;
+}
