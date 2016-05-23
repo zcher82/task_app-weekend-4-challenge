@@ -57,6 +57,7 @@ function createTask() {
         getTasks();
       }
     });
+    $('input[name=task]').focus(); //auto focuses cursor back to input field where name = task (from html page)
 }
 
 // GET -- retrieve data from database, create container/fields to dispaly data on DOM
@@ -67,30 +68,34 @@ function getTasks() {
     success: function(data) {
       $('#taskContainer').empty();
       data.forEach(function(task, i) {
-        $container = $('<div class="task"></div>');
 
-        $container.data("id", task.id);
-        $container.append('<h3>Task: '+task.task+'</h3>');
-        $container.append('<h4>status: '+task.status+'</h4>');
-        $container.append('<h5>notes: '+task.notes+'</h5>');
+        if(task.status == "completed") {
+          $container = $('<div class="finallyComplete"></div>');
+        }
+        else {
+          $container = $('<div class="task"></div>');
+        }
+          $container.data("id", task.id);
+          $container.append('<h3>Task: '+task.task+'</h3>');
+          $container.append('<h4>status: '+task.status+'</h4>');
+          $container.append('<h5>notes: '+task.notes+'</h5>');
 
-        // editable notes field
-        var notesProperty = ['notes'];
-        notesProperty.forEach(function (prop) {
+          // editable notes field
+          var notesProperty = ['notes'];
+          notesProperty.forEach(function (prop) {
 
-          var $el = $('<form id="updater">' + '<textarea id="notes" name="notes" class="newNotes"' +
-                    'cols="20" rows="4">update notes...</textarea>' + '</form>');
+            var $el = $('<form id="updater">' + '<textarea id="notes" name="notes" class="newNotes"' +
+                      'cols="20" rows="4" placeholder="update notes..."></textarea>' + '</form>');
 
-          //var $el = $('<input type="text" id="notes" name="notes" class="newnotes" />');
-          $el.val(task[prop]);
-          $container.append($el);
-        });
 
-        $container.append('<button class="updateNotes">submit</button>');
-        $container.append('<button class="completed">complete task</button>');
-        $container.append('<button class="delete">delete task</button>');
-        $('#taskContainer').append($container);
+            $el.val(task[prop]);
+            $container.append($el);
+          });
 
+          $container.append('<button class="updateNotes">submit</button>');
+          $container.append('<button class="completed">complete task</button>');
+          $container.append('<button class="delete">delete task</button>');
+          $('#taskContainer').append($container);
       });
     }
   });
@@ -144,14 +149,28 @@ function completeTask() {
 // DELETE -- delete data from DOM and database
 function deleteTask() {
   event.preventDefault();
+  var done = confirm('FINISHED ALREADY?');
 
-  var notesId = getTaskId($(this));
+  if (done == true) {
+    var notesId = getTaskId($(this));
 
-  $.ajax({
-    type: 'DELETE',
-    url: '/updates/' + notesId,
-    success: function (data) {
-      getTasks();
-    }
-  });
+    $.ajax({
+      type: 'DELETE',
+      url: '/updates/' + notesId,
+      success: function (data) {
+        getTasks();
+      }
+    });
+  }
 }
+
+//   var notesId = getTaskId($(this));
+//
+//   $.ajax({
+//     type: 'DELETE',
+//     url: '/updates/' + notesId,
+//     success: function (data) {
+//       getTasks();
+//     }
+//   });
+// }

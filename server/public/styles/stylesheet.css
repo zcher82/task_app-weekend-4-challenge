@@ -2,6 +2,12 @@
   border: 1px dotted red;
 } */
 
+body {
+  background-image: url("https://static.pexels.com/photos/20974/pexels-photo.jpg");
+  /*background-image: url("http://fullhdpictures.com/wp-content/uploads/2015/10/Beauty-Nature-Wallpaper.jpg");*/
+  background-color: lightblue;
+}
+
 .task {
   position: relative;
   width: 49%;
@@ -9,6 +15,7 @@
   border-radius: 5px;
   background-color: beige;
   margin: 2px 2px 2px 2px;
+  opacity: 0.8;
 }
 
 .finallyComplete {
@@ -16,8 +23,19 @@
   width: 49%;
   float: left;
   border-radius: 5px;
-  background-color: green;
+  background-color: pink;
   margin: 2px 2px 2px 2px;
+  opacity: 0.8;
+}
+
+label {
+  color: darkblue;
+}
+
+
+#submit {
+  background-color: peachpuff;
+  border-radius: 5px;
 }
 
 .completed {
@@ -39,6 +57,10 @@
 .updateNotes {
   background-color: peachpuff;
   border-radius: 5px;
+}
+
+h1, h2{
+  color: darkblue;
 }
 
 h3, h4, h5 {

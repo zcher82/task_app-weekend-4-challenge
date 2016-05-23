@@ -11,11 +11,15 @@ router.put('/:id', function (req, res) {
 
   console.log(req.body);
   console.log(req.params.id);
+  console.log(task.notes);
 
   pg.connect(connectionString, function (err, client, done) {
     if (err) {
       res.sendStatus(500);
     }
+
+
+    //UPDATE categories SET code = CONCAT(code, '_standard') WHERE id = 1;
 
     client.query('UPDATE tasks ' +
                   'SET notes = $1 ' +
